@@ -1,0 +1,20 @@
+{
+  "workbench.colorTheme": "Cobalt2",
+  "files.autoSave": "onWindowChange",
+  "go.buildOnSave": "workspace",
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": false,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 4,
+  "extensions.autoUpdate": true,
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "/vendor": true
+  },
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.fontWeight": "300",
+  "go.lintTool": "golangci-lint",
+  "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+}
