@@ -21,7 +21,7 @@ that. I realized it would be better to split that into another repo, so
 this one would contain only the configs, and the other handles only software
 installation.
 
-With that in mind, [machine](http://github.com/caarlos0/machine) was born.
+With that in mind, [machine](http://github.com/valdemarjuniorr/machine) was born.
 
 It's an Ansible recipe that can install a bunch of stuff, and you can comment
 out what you don't want. Works on both Linux and OSX.

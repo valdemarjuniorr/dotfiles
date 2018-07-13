@@ -58,4 +58,4 @@ $ sudo mv /Applications/iTunes.app/Contents/MacOS/iTunesHelper.app{-disabled,}
 $ launchctl load -w /System/Library/LaunchAgents/com.apple.rcd.plist
 ```
 
-For more info, check [issue #197](https://github.com/caarlos0/dotfiles/issues/197).
+For more info, check [issue #197](https://github.com/valdemarjuniorr/dotfiles/issues/197).

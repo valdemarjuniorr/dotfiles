@@ -1,11 +1,11 @@
 # this block is in alphabetic order
-caarlos0/ports kind:path
-caarlos0/zsh-git-fetch-merge kind:path
-caarlos0/zsh-git-sync kind:path
-caarlos0/zsh-mkc
-caarlos0/zsh-open-pr kind:path
 mafredri/zsh-async
 rupa/z
+valdemarjuniorr/ports kind:path
+valdemarjuniorr/zsh-git-fetch-merge kind:path
+valdemarjuniorr/zsh-git-sync kind:path
+valdemarjuniorr/zsh-mkc
+valdemarjuniorr/zsh-open-pr kind:path
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 

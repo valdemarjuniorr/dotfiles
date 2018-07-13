@@ -1,5 +1,5 @@
 architect:
-  - caarlos0
+  - valdemarjuniorr
 install:
     - git submodule init
     - git submodule update
