@@ -6,7 +6,8 @@ fi
 alias gl='git pull --prune'
 alias glg="git log --graph --decorate --oneline --abbrev-commit"
 alias glga="glg --all"
-alias gp='git push origin master'
+alias gp='git push origin HEAD'
+alias gm='git push origin master'
 alias gpa='git push origin --all'
 alias gd='git diff'
 alias gc='git commit'
@@ -18,6 +19,7 @@ alias gaa='git add -A'
 alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gst='git status -sb'
+alias gbd='git branch -D'
 alias gpr='gp && git pr'
 alias glnext='git log --oneline $(git describe --tags --abbrev=0 @^)..@'
 

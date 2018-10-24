@@ -12,7 +12,9 @@ if test "$(which code)"; then
 
 	# from `code --list-extensions`
 	modules="
+aaron-bond.better-comments
 alefragnani.numbered-bookmarks
+eamodio.gitlens
 esbenp.prettier-vscode
 ms-vscode.Go
 PeterJausovec.vscode-docker
