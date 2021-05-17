@@ -1,5 +1,5 @@
 #!/bin/sh
-if test "$(which code)"; then
+if test "$(which code-insiders)"; then
 	if [ "$(uname -s)" = "Darwin" ]; then
 		VSCODE_HOME="$HOME/Library/Application Support/Code"
 	else
@@ -16,12 +16,12 @@ aaron-bond.better-comments
 alefragnani.numbered-bookmarks
 eamodio.gitlens
 esbenp.prettier-vscode
-ms-vscode.Go
-PeterJausovec.vscode-docker
 shyykoserhiy.vscode-spotify
 wesbos.theme-cobalt2
+golang.go
 "
 	for module in $modules; do
-		code --install-extension "$module" || true
+		code-insiders --install-extension "$module" || true
 	done
 fi
+

@@ -1,11 +1,6 @@
 # this block is in alphabetic order
 mafredri/zsh-async
 rupa/z
-valdemarjuniorr/ports kind:path
-valdemarjuniorr/zsh-git-fetch-merge kind:path
-valdemarjuniorr/zsh-git-sync kind:path
-valdemarjuniorr/zsh-mkc
-valdemarjuniorr/zsh-open-pr kind:path
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 

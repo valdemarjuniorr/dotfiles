@@ -2,9 +2,10 @@
 URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip"
 
 install() {
+	echo "Installing fonts in $2 folder..."
 	curl -L -s -o /tmp/fura.zip "$URL"
-	unzip /tmp/fura.zip -d /tmp
-	cp /tmp/FiraCode/*.ttf "$2"
+	unzip -o /tmp/fura.zip -d /tmp
+	cp /tmp/*.ttf "$2"
 }
 
 if [ "$(uname -s)" = "Darwin" ]; then
