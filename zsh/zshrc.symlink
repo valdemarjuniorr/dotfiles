@@ -47,3 +47,33 @@ unset config_files updated_at
 # want in your public, versioned repo.
 # shellcheck disable=SC1090
 [ -f ~/.localrc ] && . ~/.localrc
+
+
+alias aws_olist="unset AWS_PROFILE; aws-google-auth -p olist;"
+alias aws_olist_staging="unset AWS_PROFILE; aws-google-auth -p olist-staging;"
+
+export PATH=$PATH:$HOME/tools
+export GOROOT="$HOME/tools/go"
+export GOPATH="$HOME/projects"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+export GOPRIVATE=gitlab.olist.io/*,github.com/olist
+
+alias make=mmake
+
+# Olist
+export GOOGLE_IDP_ID=C00iz45dt
+export GOOGLE_SP_ID=415506929041
+export AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_PROFILE=olist-cluster # pode usar o nome que lhe for conveniente, ficará em suas credentials
+export GOOGLE_USERNAME=valdemar.barros@olist.com
+export OLIST_TEAM=su-channels
+
+
+olist(){
+  export AWS_ROLE_ARN=arn:aws:iam::412729474065:role/${OLIST_TEAM}
+}
+
+olist-staging(){
+  export AWS_ROLE_ARN=arn:aws:iam::678697092296:role/${OLIST_TEAM}
+}

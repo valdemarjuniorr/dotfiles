@@ -19,6 +19,7 @@ esbenp.prettier-vscode
 shyykoserhiy.vscode-spotify
 wesbos.theme-cobalt2
 golang.go
+ms-azuretools.vscode-docker
 "
 	for module in $modules; do
 		code-insiders --install-extension "$module" || true
