@@ -51,14 +51,16 @@ unset config_files updated_at
 
 alias aws_olist="unset AWS_PROFILE; aws-google-auth -p olist;"
 alias aws_olist_staging="unset AWS_PROFILE; aws-google-auth -p olist-staging;"
+alias make=mmake
+
+export DIFF_SO_FANCY="$HOME/tools/diff-so-fancy"
 
 export PATH=$PATH:$HOME/tools
 export GOROOT="$HOME/tools/go"
 export GOPATH="$HOME/projects"
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$DIFF_SO_FANCY"
 export GOPRIVATE=gitlab.olist.io/*,github.com/olist
 
-alias make=mmake
 
 # Olist
 export GOOGLE_IDP_ID=C00iz45dt
