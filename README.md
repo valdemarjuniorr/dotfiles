@@ -51,9 +51,8 @@ For both Linux and macOS:
 better git difs (you'll need to run `dot_update` to apply it);
 - [`fzf`](https://github.com/junegunn/fzf):
 fuzzy finder, used in `,t` on vim, for example;
-- [`exa`](https://the.exa.website/): for better `ls`;
+- [`lsd`](https://github.com/lsd-rs/lsd): for better `ls`;
 - [`mmake`](https://github.com/tj/mmake): a modern `make`.
-- [`hub`](https://hub.github.com/): a command-line wrapper for git that makes
   you better at GitHub;
 - [`kubectx`](https://github.com/ahmetb/kubectx) for better kubernetes context
   and namespace switch;
@@ -79,4 +78,7 @@ And logging out and in again.
 Feel free to contribute. Pull requests will be automatically
 checked/linted with [Shellcheck](https://github.com/koalaman/shellcheck)
 and [shfmt](https://github.com/mvdan/sh).
+
+## Troubleshooting
+- In case [`lsd`](https://github.com/lsd-rs/lsd) font aren't working on MacOS, check this [link](https://github.com/lsd-rs/lsd/issues/199#issuecomment-494218334)
 

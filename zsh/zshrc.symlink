@@ -1,11 +1,11 @@
 #!/bin/zsh
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
-
+export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME=robbyrussell
 
 # your project folder that we can `c [tab]` to
-export PROJECTS="$HOME/Code"
+export PROJECTS="$HOME/projects/"
 
 # your default editor
 export EDITOR='vim'
@@ -22,6 +22,10 @@ done
 
 # load antibody plugins
 source ~/.zsh_plugins.sh
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
@@ -43,20 +47,20 @@ done
 
 unset config_files updated_at
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-# shellcheck disable=SC1090
-[ -f ~/.localrc ] && . ~/.localrc
-
-
-alias aws_olist="unset AWS_PROFILE; aws-google-auth -p olist;"
-alias aws_olist_staging="unset AWS_PROFILE; aws-google-auth -p olist-staging;"
-alias make=mmake
-
+export PYHTON_HOME="/Users/valdemar.barros/Library/Python/3.9"
 export DIFF_SO_FANCY="$HOME/tools/diff-so-fancy"
+export PATH="$PATH:$DIFF_SO_FANCY"
+source "/Users/valdemar.barros/.sdkman/bin/sdkman-init.sh"
 
-export PATH=$PATH:$HOME/tools
-export GOROOT="$HOME/tools/go"
-export GOPATH="$HOME/projects"
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin:$DIFF_SO_FANCY"
-export GOPRIVATE=gitlab.olist.io/*,github.com/olist
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/valdemar.barros/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+export DOCKER_HOST=unix://$HOME/.rd/docker.sock
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
+
+alias python=/usr/bin/python3
+export PATH="$PATH:$PYHTON_HOME/bin"
+
+
