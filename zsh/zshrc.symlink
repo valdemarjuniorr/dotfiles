@@ -62,5 +62,3 @@ export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show vznat | awk '/inet /
 
 alias python=/usr/bin/python3
 export PATH="$PATH:$PYHTON_HOME/bin"
-
-

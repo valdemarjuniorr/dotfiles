@@ -26,6 +26,7 @@ alias gpo='git pull origin'
 alias gpr='gp && git pr'
 alias glnext='git log --oneline $(git describe --tags --abbrev=0 @^)..@'
 alias grebase='git pull origin main && git push origin'
+alias undo='git reset --hard origin/main'
 
 if which svu >/dev/null 2>&1; then
 	alias gtpatch='echo `svu p`; git tag `svu p`'

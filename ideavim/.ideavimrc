@@ -1,0 +1,70 @@
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'machakann/vim-highlightedyank'
+
+set relativenumber
+set clipboard^=unnamedplus,unnamed
+set matchpairs+=<:>
+set ideajoin
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+" unable the visual bell in the editor, which make the cursor down after $
+set visualbell
+
+" leader key
+let mapleader = ' '
+
+" move to the next character occurrence
+noremap ' ;
+
+" redo
+noremap U <C-r>
+
+" when paging up or down the cursors keeps in the middle of the screen
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+
+noremap n nzzzv
+noremap N Nzzzv
+
+" replace ESC key to TAB key, because is easier to reach
+noremap <Tab> <Esc>
+
+" move to the end of the word by camel case navigation
+map w [w
+map e ]w
+map b [b
+
+" Navigate methods
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
+
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+
+" remove highlight search
+noremap <Esc> :nohlsearch<cr>
+
+map w [w
+
+" move to the end of the next word
+map e ]w
+
+" move to the beginning of the previous word
+map b [b
+
+" move to the end of the previous word
+map ge ]b
+
+map <leader>sf <Action>(GotoFile)
+map <leader>ss <Action>(GotoSymbol)
+map <leader>sa <Action>(GotoAction)
+map <leader>sr <Action>(RecentFiles)
+map <leader>t <Action>(ActivateTerminalToolWindow)
+map <leader>th <Action>(HideActiveWindow)
+
+" refactor menu
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rr <Action>(RenameElement)
