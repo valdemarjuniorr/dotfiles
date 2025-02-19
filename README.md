@@ -52,11 +52,17 @@ For both Linux and macOS:
 better git difs (you'll need to run `dot_update` to apply it);
 - [`fzf`](https://github.com/junegunn/fzf):
 fuzzy finder, used in `,t` on vim, for example;
-- [`lsd`](https://github.com/lsd-rs/lsd): for better `ls`;
 - [`mmake`](https://github.com/tj/mmake): a modern `make`.
   you better at GitHub;
-- [`kubectx`](https://github.com/ahmetb/kubectx) for better kubernetes context
-  and namespace switch;
+- [`lsd`](https://github.com/lsd-rs/lsd): for better `ls`;
+  - If you use this better `ls`, run this command to intall Nerd Fonts:
+  ```console
+  wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
+  && cd ~/.local/share/fonts \
+  && unzip JetBrainsMono.zip \
+  && rm JetBrainsMono.zip \
+  && fc-cache -fv
+  ```
 
 ### macOS defaults
 

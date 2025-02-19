@@ -2,7 +2,7 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME=robbyrussell
+export ZSH_THEME=jispwoso
 
 # your project folder that we can `c [tab]` to
 export PROJECTS="$HOME/projects/"
@@ -50,9 +50,9 @@ unset config_files updated_at
 export DIFF_SO_FANCY="$HOME/tools/diff-so-fancy"
 export PATH="$PATH:$DIFF_SO_FANCY"
 
-export DOCKER_HOST=unix://$HOME/.rd/docker.sock
-export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show vznat | awk '/inet / {sub("/.*",""); print $2}')
-
 alias python=/usr/bin/python3
 export PATH="$PATH:$PYHTON_HOME/bin"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
