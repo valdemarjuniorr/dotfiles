@@ -20,6 +20,7 @@ First, make sure you have all those things installed:
 - `curl`: to download some stuff
 - `tar`: to extract downloaded stuff
 - `zsh`: to actually run the dotfiles
+- `crontab`: to schedule dotfiles constant updates
 - `sudo`: some configs may need that
 
 ### Install

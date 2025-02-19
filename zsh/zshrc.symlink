@@ -47,14 +47,8 @@ done
 
 unset config_files updated_at
 
-export PYHTON_HOME="/Users/valdemar.barros/Library/Python/3.9"
 export DIFF_SO_FANCY="$HOME/tools/diff-so-fancy"
 export PATH="$PATH:$DIFF_SO_FANCY"
-source "/Users/valdemar.barros/.sdkman/bin/sdkman-init.sh"
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/valdemar.barros/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 export DOCKER_HOST=unix://$HOME/.rd/docker.sock
 export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
