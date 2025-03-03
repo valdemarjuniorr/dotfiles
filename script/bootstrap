@@ -64,6 +64,19 @@ setup_gitconfig() {
 	success 'gitconfig'
 }
 
+install_ssh() {
+# Check if ssh key exists
+if [ -f ~/.ssh/id_ed25519 ]; then
+  info "SSH key already exists"
+else
+  user "- What is your email address for ssh key generation?"
+  read -r email
+  # Generate ssh key
+  ssh-keygen -t ed25519 -C "$email"
+  success "SSH key generated"
+fi
+}
+
 link_file() {
 	if [ -e "$2" ]; then
 		if [ "$(readlink "$2")" = "$1" ]; then
@@ -96,6 +109,7 @@ find_zsh() {
 }
 
 setup_gitconfig
+install_ssh
 install_dotfiles
 
 info "installing dependencies"
