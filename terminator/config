@@ -1,11 +1,9 @@
 [global_config]
-  window_state = maximise
-  title_hide_sizetext = True
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
-  suppress_multiple_term_dialog = True
-  title_use_system_font = False
-  title_font = DejaVu Sans Mono 9
 [keybindings]
+  go_next = <Primary>greater
+  go_prev = <Primary>less
+  split_auto = <Primary>bar
   split_horiz = <Primary><Shift>bar
   switch_to_tab_1 = <Primary>1
   switch_to_tab_2 = <Primary>2
@@ -21,10 +19,10 @@
   [[default]]
     background_darkness = 0.8
     background_type = transparent
-    cursor_color = "#aaaaaa"
     font = DejaVu Sans Mono 10
     scrollback_lines = 5000
     use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
