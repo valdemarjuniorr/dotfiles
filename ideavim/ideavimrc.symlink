@@ -3,6 +3,7 @@ Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
 
 set relativenumber
+set showcmd
 set clipboard^=unnamedplus,unnamed
 set matchpairs+=<:>
 set ideajoin
@@ -12,6 +13,7 @@ set smartcase
 set incsearch
 " unable the visual bell in the editor, which make the cursor down after $
 set visualbell
+set which-key
 
 " leader key
 let mapleader = ' '
@@ -44,6 +46,7 @@ map ]] <Action>(MethodDown)
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
 
+
 " remove highlight search
 noremap <Esc> :nohlsearch<cr>
 
@@ -64,7 +67,11 @@ map <leader>sa <Action>(GotoAction)
 map <leader>sr <Action>(RecentFiles)
 map <leader>t <Action>(ActivateTerminalToolWindow)
 map <leader>th <Action>(HideActiveWindow)
+map <leader>b <Action>(GotoDeclaration)
 
 " refactor menu
 map <leader>rv <Action>(IntroduceVariable)
 map <leader>rr <Action>(RenameElement)
+
+" Close active tab
+map <leader>q <action>(CloseContent)
