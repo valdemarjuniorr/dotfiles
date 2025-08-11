@@ -1,0 +1,30 @@
+# Lazygit Custom Configuration Example
+# Place this file in ~/.dotfiles/config/lazygit/config.yml
+
+gui:
+  theme:
+    activeBorderColor:
+      - yellow
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - blue
+  showIcons: true
+  nerdFontsVersion: "3"
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  commit:
+    signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+
+os:
+  editCommand: "nvim"
+  openCommand: "open {{filename}}" # On macOS/iOS; on Linux, xdg-open will be auto-detected by lazygit
+
+update:
+  method: "background"
