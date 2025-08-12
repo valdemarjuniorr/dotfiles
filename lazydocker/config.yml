@@ -1,6 +1,5 @@
 # LazyDocker Custom Configuration Example
-# Place this file in ~/.dotfiles/config/lazydocker/config.yml
-
+# Place this file in ~/.dotfiles/lazydocker/config.yml
 gui:
   theme:
     activeBorderColor:

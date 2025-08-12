@@ -1,6 +1,5 @@
 # Lazygit Custom Configuration Example
-# Place this file in ~/.dotfiles/config/lazygit/config.yml
-
+# Place this file in ~/.dotfiles/lazygit/config.yml
 gui:
   theme:
     activeBorderColor:
