@@ -1,0 +1,8 @@
+# bhop custom configuration
+# Place this file in ~/.dotfiles/config/bhop/config.toml
+
+[general]
+auto_jump = true
+max_history = 100
+fuzzy_search = true
+

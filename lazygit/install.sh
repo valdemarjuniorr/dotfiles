@@ -1,16 +1,17 @@
 #!/bin/bash
-
 # Lazygit installation and dotfiles symlink script for Linux and macOS (Darwin/iOS)
-
 set -e
+# Import bootstrap script for common functions and variables
+source "$HOME/.dotfiles/scripts/bootstrap.sh"
 
 # Detect OS
 OS="$(uname -s)"
 
+INSTALL_CMD="sudo install"
+LAZYGIT_URL=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+
 case "$OS" in
     Linux*)
-        INSTALL_CMD="sudo install"
-        LAZYGIT_URL=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
         LAZYGIT_TAR="lazygit_${LAZYGIT_URL#v}_Linux_x86_64.tar.gz"
         ;;
     Darwin*)
@@ -19,20 +20,18 @@ case "$OS" in
             brew install lazygit
             LAZYGIT_INSTALLED=true
         else
-            INSTALL_CMD="sudo install"
-            LAZYGIT_URL=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
             LAZYGIT_TAR="lazygit_${LAZYGIT_URL#v}_Darwin_x86_64.tar.gz"
         fi
         ;;
     *)
-        echo "Unsupported OS: $OS"
+       fail  "Unsupported OS: $OS"
         exit 1
         ;;
 esac
 
 # If not installed via package manager, download binary
 if [ -z "${LAZYGIT_INSTALLED}" ]; then
-    echo "Downloading lazygit binary..."
+    success "Downloading lazygit binary..."
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/${LAZYGIT_URL}/${LAZYGIT_TAR}"
     tar -xzf lazygit.tar.gz lazygit
     $INSTALL_CMD lazygit /usr/local/bin/lazygit
@@ -45,24 +44,7 @@ DOTFILES_CONFIG="${HOME}/.dotfiles/lazygit/config.yml"
 
 mkdir -p "$CONFIG_DIR"
 
-# Symlink config from .dotfiles if it exists
-if [ -f "$DOTFILES_CONFIG" ]; then
-    ln -sf "$DOTFILES_CONFIG" "$CONFIG_DIR/config.yml"
-    echo "Symlinked dotfiles config to $CONFIG_DIR/config.yml"
-else
-    cat > "$CONFIG_DIR/config.yml" <<EOF
-# Example lazygit config, edit as needed
-gui:
-  theme:
-    activeBorderColor:
-      - yellow
-      - bold
-    inactiveBorderColor:
-      - white
-    optionsTextColor:
-      - blue
-  showIcons: true
-EOF
-    echo "Created default config at $CONFIG_DIR/config.yml"
-fi
+# Symlink the lazygit config from dotfiles
+ln -sf "$DOTFILES_CONFIG" "$CONFIG_DIR/config.yml"
+success "Symlinked dotfiles config to $CONFIG_DIR/config.yml"
 
