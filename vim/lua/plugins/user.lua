@@ -1,78 +1,234 @@
+-- since this is just an example spec, don't actually load anything here and return an empty spec
+-- stylua: ignore
+if true then return {} end
+
+-- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
+--
+-- In your plugin files, you can:
+-- * add extra plugins
+-- * disable/enabled LazyVim plugins
+-- * override the configuration of LazyVim plugins
 return {
-	-- Colorscheme
+	-- add gruvbox
+	{ "ellisonleao/gruvbox.nvim" },
+
+	-- Configure LazyVim to load gruvbox
 	{
-		"ayu-theme/ayu-vim",
-		config = function()
-			vim.cmd.colorscheme("ayu")
+		"LazyVim/LazyVim",
+		opts = {
+			colorscheme = "gruvbox",
+		},
+	},
+
+	-- change trouble config
+	{
+		"folke/trouble.nvim",
+		-- opts will be merged with the parent spec
+		opts = { use_diagnostic_signs = true },
+	},
+
+	-- disable trouble
+	{ "folke/trouble.nvim", enabled = false },
+
+	-- override nvim-cmp and add cmp-emoji
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = { "hrsh7th/cmp-emoji" },
+		---@param opts cmp.ConfigSchema
+		opts = function(_, opts)
+			table.insert(opts.sources, { name = "emoji" })
 		end,
 	},
 
-	-- UI
-	{ "vim-airline/vim-airline" },
-	{ "vim-airline/vim-airline-themes" },
-	{
-		"luochen1990/rainbow",
-		config = function()
-			vim.g.rainbow_active = 1
-		end,
-	},
-
-	-- File explorer
-	{
-		"preservim/nerdtree",
-		cmd = { "NERDTreeToggle", "NERDTreeFind" },
-		config = function()
-			vim.g.NERDTreeShowHidden = 1
-			vim.g.NERDTreeIgnore = { "\\.vim$", "\\.git$", "\\.DS_Store$" }
-		end,
-	},
-
-	-- FZF
-	{ "junegunn/fzf", build = ":fzf#install()" },
-	{ "junegunn/fzf.vim" },
-
-	-- Go
-	{
-		"fatih/vim-go",
-		build = ":GoInstallBinaries",
-		ft = "go",
-		config = function()
-			vim.g.go_fmt_command = "goimports"
-			vim.g.go_autodetect_gopath = 1
-			vim.g.go_highlight_build_constraints = 1
-		end,
-	},
-
-	-- Extra utilities
-	{ "ntpeters/vim-better-whitespace" },
-	{ "tpope/vim-endwise" },
-	{ "godlygeek/tabular" },
-	{
-		"terryma/vim-multiple-cursors",
-		config = function()
-			vim.g.multi_cursor_use_default_mapping = 0
-			vim.g.multi_cursor_next_key = "<C-i>"
-			vim.g.multi_cursor_prev_key = "<C-y>"
-			vim.g.multi_cursor_skip_key = "<C-b>"
-			vim.g.multi_cursor_quit_key = "<Esc>"
-		end,
-	},
-	{
-		"Raimondi/delimitMate",
-		config = function()
-			vim.g.delimitMate_expand_cr = 1
-			vim.g.delimitMate_expand_space = 1
-			vim.g.delimitMate_smart_quotes = 1
-		end,
-	},
-	{ "folke/trouble.nvim" },
+	-- change some telescope options and a keymap to browse plugin files
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Telescope",
-		config = function()
-			local telescope = require("telescope")
-			telescope.setup({})
+		keys = {
+      -- add a keymap to browse plugin files
+      -- stylua: ignore
+      {
+        "<leader>fp",
+        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
+        desc = "Find Plugin File",
+      },
+		},
+		-- change some options
+		opts = {
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = { prompt_position = "top" },
+				sorting_strategy = "ascending",
+				winblend = 0,
+			},
+		},
+	},
+
+	-- add pyright to lspconfig
+	{
+		"neovim/nvim-lspconfig",
+		---@class PluginLspOpts
+		opts = {
+			---@type lspconfig.options
+			servers = {
+				pyright = {},
+				jdtls = {}, -- Java LSP
+				lua_ls = {}, -- Lua LSP
+				sonarlint_language_server = {}, -- SonarLint
+				vscode_spring_boot_tools = {}, -- Spring Boot tools (if supported by lspconfig)
+			},
+		},
+	},
+
+	-- add tsserver and setup with typescript.nvim instead of lspconfig
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"jose-elias-alvarez/typescript.nvim",
+			init = function()
+				require("lazyvim.util").lsp.on_attach(function(_, buffer)
+          -- stylua: ignore
+          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+					vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+				end)
+			end,
+		},
+		---@class PluginLspOpts
+		opts = {
+			---@type lspconfig.options
+			servers = {
+				-- tsserver will be automatically installed with mason and loaded with lspconfig
+				tsserver = {},
+			},
+			-- you can do any additional lsp server setup here
+			-- return true if you don't want this server to be setup with lspconfig
+			---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+			setup = {
+				-- example to setup with typescript.nvim
+				tsserver = function(_, opts)
+					require("typescript").setup({ server = opts })
+					return true
+				end,
+				-- Specify * to use this function as a fallback for any server
+				-- ["*"] = function(server, opts) end,
+			},
+		},
+	},
+
+	-- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
+	-- treesitter, mason and typescript.nvim. So instead of the above, you can use:
+	{ import = "lazyvim.plugins.extras.lang.typescript" },
+
+	-- add more treesitter parsers
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"bash",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"query",
+				"regex",
+				"tsx",
+				"typescript",
+				"vim",
+				"yaml",
+			},
+		},
+	},
+
+	-- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
+	-- would overwrite `ensure_installed` with the new value.
+	-- If you'd rather extend the default config, use the code below instead:
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			-- add tsx and treesitter
+			vim.list_extend(opts.ensure_installed, {
+				"tsx",
+				"typescript",
+			})
 		end,
+	},
+
+	-- the opts function can also be used to change the default opts:
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = function(_, opts)
+			table.insert(opts.sections.lualine_x, {
+				function()
+					return "😄"
+				end,
+			})
+		end,
+	},
+
+	-- or you can return new options to override all the defaults
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = function()
+			return {
+				--[[add your custom lualine config here]]
+			}
+		end,
+	},
+
+	-- use mini.starter instead of alpha
+	{ import = "lazyvim.plugins.extras.ui.mini-starter" },
+
+	-- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
+	{ import = "lazyvim.plugins.extras.lang.json" },
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+				-- LSPs
+				"pyright",
+				"lua-language-server",
+				"jdtls",
+				"sonarlint-language-server",
+				-- Linters
+				"checkstyle",
+				"semgrep",
+				-- Formatters
+				"stylua",
+				"google-java-format",
+				"clang-format",
+				"prettier",
+				"shfmt",
+			},
+			auto_update = true,
+			run_on_start = true,
+		},
+	},
+	-- add any tools you want to have installed below
+	{
+		"williamboman/mason.nvim",
+		opts = {
+			ensure_installed = {
+				-- Java tools
+				"google-java-format",
+				"checkstyle",
+				"java-debug-adapter",
+				"java-test",
+
+				-- Formatters & linters
+				"clang-format",
+				"prettier",
+				"shfmt",
+				"stylua",
+				"semgrep",
+				"ast-grep",
+			},
+			-- Automatically update & install on startup
+			auto_update = true, -- Update packages
+			run_on_start = true, -- Install missing tools
+		},
 	},
 }

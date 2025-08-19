@@ -1,11 +1,8 @@
--- Leader
-vim.g.mapleader = ","
-
 -- UI
 vim.opt.number = true
 vim.opt.relativenumber = true
+
 vim.opt.termguicolors = true
-vim.g.ayucolor = "mirage"
 
 -- Behavior
 vim.opt.clipboard = "unnamed,unnamedplus"
@@ -45,10 +42,10 @@ vim.opt.softtabstop = 2
 vim.opt.wildmenu = true
 vim.opt.wildmode = "list:full"
 vim.opt.wildignore:append({
-  "*.o,*.obj,*.dll,*.exe",
-  "*.git,*.svn",
-  "*.zip,*.tar.gz",
-  "*.pyc",
-  "*.DS_Store",
-  "*.db",
+	"*.o,*.obj,*.dll,*.exe",
+	"*.git,*.svn",
+	"*.zip,*.tar.gz",
+	"*.pyc",
+	"*.DS_Store",
+	"*.db",
 })

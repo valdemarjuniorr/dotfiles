@@ -56,3 +56,7 @@ export PATH="$PATH:$PYHTON_HOME/bin"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export M2_HOME="$HOME/tools/maven-4-rc/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
