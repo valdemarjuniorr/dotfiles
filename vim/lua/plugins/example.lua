@@ -26,7 +26,6 @@ return {
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
-
   -- disable trouble
   { "folke/trouble.nvim", enabled = false },
 
@@ -63,6 +62,19 @@ return {
     },
   },
 
+  -- add pyright to lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+        pyright = {},
+      },
+    },
+  },
+
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
     "neovim/nvim-lspconfig",
@@ -82,11 +94,6 @@ return {
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
-        pyright = {},
-        jdtls = {}, -- Java LSP
-        lua_ls = {}, -- Lua LSP
-        sonarlint_language_server = {}, -- SonarLint
-        vscode_spring_boot_tools = {}, -- Spring Boot tools (if supported by lspconfig)
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -174,52 +181,17 @@ return {
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = {
-        -- LSPs
-        "pyright",
-        "lua-language-server",
-        "jdtls",
-        "sonarlint-language-server",
-        -- Linters
-        "checkstyle",
-        "semgrep",
-        -- Formatters
-        "stylua",
-        "google-java-format",
-        "clang-format",
-        "prettier",
-        "shfmt",
-      },
-      auto_update = true,
-      run_on_start = true,
-    },
-  },
+
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        -- Java tools
-        "google-java-format",
-        "checkstyle",
-        "java-debug-adapter",
-        "java-test",
-
-        -- Formatters & linters
-        "clang-format",
-        "prettier",
-        "shfmt",
         "stylua",
-        "semgrep",
-        "ast-grep",
-        "superhtml",
+        "shellcheck",
+        "shfmt",
+        "flake8",
       },
-      -- Automatically update & install on startup
-      auto_update = true, -- Update packages
-      run_on_start = true, -- Install missing tools
     },
   },
 }

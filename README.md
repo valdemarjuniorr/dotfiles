@@ -55,7 +55,7 @@ fuzzy finder, used in `,t` on vim, for example;
 - [`mmake`](https://github.com/tj/mmake): a modern `make`.
   you better at GitHub;
 - [`lsd`](https://github.com/lsd-rs/lsd): for better `ls`;
-  - If you use this better `ls`, run this command to intall Nerd Fonts:
+  - If you use this better `ls`, run this command to install Nerd Fonts:
   ```console
   wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
   && cd ~/.local/share/fonts \

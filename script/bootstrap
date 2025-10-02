@@ -61,20 +61,22 @@ setup_gitconfig() {
 	# finally make git knows this is a managed config already, preventing later
 	# overrides by this script
 	git config --global dotfiles.managed true
+	git config --global init.defaultBranch main
+
 	success 'gitconfig'
 }
 
 install_ssh() {
-# Check if ssh key exists
-if [ -f ~/.ssh/id_ed25519 ]; then
-  info "SSH key already exists"
-else
-  user "- What is your email address for ssh key generation?"
-  read -r email
-  # Generate ssh key
-  ssh-keygen -t ed25519 -C "$email"
-  success "SSH key generated"
-fi
+	# Check if ssh key exists
+	if [ -f ~/.ssh/id_ed25519 ]; then
+		info "SSH key already exists"
+	else
+		user "- What is your email address for ssh key generation?"
+		read -r email
+		# Generate ssh key
+		ssh-keygen -t ed25519 -C "$email"
+		success "SSH key generated"
+	fi
 }
 
 link_file() {
