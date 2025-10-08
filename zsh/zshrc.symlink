@@ -8,7 +8,7 @@ export ZSH_THEME=jispwoso
 export PROJECTS="$HOME/projects/"
 
 # your default editor
-export EDITOR='vim'
+export EDITOR='nvim'
 export VEDITOR='code'
 
 # all of our zsh files
